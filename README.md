@@ -54,12 +54,12 @@ flowchart LR
 
 | Script | What I use it for |
 |---|---|
-| `homelab-preflight.sh` | Checks Docker, required commands, storage mounts, and free space before deployment |
-| `stack-health.sh` | Reports filesystem status, active mounts, container state, restart counts, and Docker disk usage |
-| `backup-configs.sh` | Creates timestamped configuration archives and SHA-256 checksums |
-| `restore-configs.sh` | Reviews and restores a selected configuration archive with confirmation prompts |
-| `docker-maintenance.sh` | Shows Docker storage usage and provides an explicit cleanup mode |
-| `grow-ubuntu-lvm.sh` | Extends the Ubuntu LVM root filesystem after increasing the virtual disk in Proxmox |
+| `homelab-preflight.sh` | Checks that Docker is running, storage is mounted, and the VM has enough free space |
+| `stack-health.sh` | Shows disk usage, the NFS mount, container status, and Docker storage usage |
+| `backup-configs.sh` | Saves the repository and Docker configuration folders to a dated archive |
+| `restore-configs.sh` | Extracts a backup to a separate folder so I can review it before restoring files |
+| `docker-maintenance.sh` | Shows Docker disk usage and can remove unused Docker data |
+| `grow-ubuntu-lvm.sh` | Expands the Ubuntu root volume after I increase the VM disk in Proxmox |
 
 ## Example deployment workflow
 
