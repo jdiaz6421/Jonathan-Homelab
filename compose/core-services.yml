@@ -1,0 +1,32 @@
+services:
+  portainer:
+    image: portainer/portainer-ce:lts
+    container_name: portainer
+    ports:
+      - "9443:9443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer-data:/data
+    restart: unless-stopped
+
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: uptime-kuma
+    ports:
+      - "3001:3001"
+    volumes:
+      - ${CONFIG_ROOT}/uptime-kuma:/app/data
+    restart: unless-stopped
+
+  meshcentral:
+    image: ghcr.io/ylianst/meshcentral:latest
+    container_name: meshcentral
+    ports:
+      - "${MESHCENTRAL_HTTPS_PORT:-8443}:443"
+    volumes:
+      - ${CONFIG_ROOT}/meshcentral/data:/opt/meshcentral/meshcentral-data
+      - ${CONFIG_ROOT}/meshcentral/files:/opt/meshcentral/meshcentral-files
+    restart: unless-stopped
+
+volumes:
+  portainer-data:
